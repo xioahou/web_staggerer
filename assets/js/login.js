@@ -33,10 +33,10 @@ $('.reg_box').on('submit',function(e){
     //阻止默认事件
     e.preventDefault()
     //向接口发送数据
-    $.post('/api/reguser',   //*注册接口
+    $.post('/api/reg',   //*注册接口
         //发送数据
         {username:$('.reg_box [name=username]').val(),password:$('.reg_box [name=password]').val()},function(res){
-            if(res.status!==0){
+            if(res.code!==0){
                 return layer.alert(res.message, {icon: 2});
             }
             layer.alert(res.message, {icon: 1});
@@ -52,10 +52,9 @@ $('#login_id').on('submit',function(e){
      url:"/api/login",
      data:$(this).serialize(),
      success:function(res){
-        if(res.status!==0){
+        if(res.code!==0){
           return  layer.alert(res.message, {icon: 2});;
         }
-        layer.alert(res.message, {icon: 1});
         localStorage.setItem('token',res.token)
         //登录成功跳转页面
         location.href='./index.html'
