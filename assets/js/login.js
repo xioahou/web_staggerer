@@ -58,7 +58,7 @@ $('#login_id').on('submit',function(e){
         layer.alert(res.message, {icon: 1});
         localStorage.setItem('token',res.token)
         //登录成功跳转页面
-        location.href='../../index.html'
+        location.href='./index.html'
      }
  })
 })
