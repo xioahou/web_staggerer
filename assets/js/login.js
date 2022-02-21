@@ -33,7 +33,7 @@ $('.reg_box').on('submit',function(e){
     //阻止默认事件
     e.preventDefault()
     //向接口发送数据
-    $.post('/api/reg',   //*注册接口
+    $.post('/api/reguser',   //*注册接口
         //发送数据
         {username:$('.reg_box [name=username]').val(),password:$('.reg_box [name=password]').val()},function(res){
             if(res.code!==0){
@@ -52,7 +52,7 @@ $('#login_id').on('submit',function(e){
      url:"/api/login",
      data:$(this).serialize(),
      success:function(res){
-        if(res.code!==0){
+        if(res.status!==0){
           return  layer.alert(res.message, {icon: 2});;
         }
         localStorage.setItem('token',res.token)

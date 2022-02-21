@@ -6,19 +6,17 @@ function getuserInfo() {
     $.ajax({
         type: "get",
         url: "/my/userinfo",
-        headers: {
-            Authorization: localStorage.getItem('token') || ""
-        },
+        //在bassApi文件中传入token值验证用户信息
         success: function (res) {
             // console.log(res);
-            resUserInfo(res)
-            if (res.code !== 0) {
-                return layer.alert(res.message, {
-                    icon: 2
+            // resUserInfo(res)
+            if (res.status !== 0) {
+                layer.alert(res.message, {
+                    icon: 1
                 })
-            } else {
-                resUserInfo(res)
-            }
+            } 
+            resUserInfo(res)
+            console.log(res);
         },
         // *不论成功还是失败都会调用baseApi中complete
        
@@ -40,12 +38,12 @@ $('#quit').on('click', function () {
 })
 //封装用户返回的信息
 function resUserInfo(user) {
-    let name = user.data.nickname || user.data.username
+    let name =user.data.nickname || user.data.username
     let first = name[0].toUpperCase()
     $('#welcome').html('欢迎  ' + name)
     if (user.data.user_pic !== null) {
         $('.text-avatar').hide()
-        $('.layui-nav-img').attr('src', user.data.user_pic)
+        $('.layui-nav-img').show().attr('src', user.data.user_pic)
     } else {
         $('.text-avatar').show().html(first)
         $('.layui-nav-img').hide()
