@@ -36,7 +36,7 @@ $('.reg_box').on('submit',function(e){
     $.post('/api/reguser',   //*注册接口
         //发送数据
         {username:$('.reg_box [name=username]').val(),password:$('.reg_box [name=password]').val()},function(res){
-            if(res.code!==0){
+            if(res.status!==0){
                 return layer.alert(res.message, {icon: 2});
             }
             layer.alert(res.message, {icon: 1});
@@ -55,9 +55,10 @@ $('#login_id').on('submit',function(e){
         if(res.status!==0){
           return  layer.alert(res.message, {icon: 2});;
         }
+        // console.log('hhhh');
         localStorage.setItem('token',res.token)
         //登录成功跳转页面
-        location.href='./index.html'
+        location.href='../../index.html'
      }
  })
 })

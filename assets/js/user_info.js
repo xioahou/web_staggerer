@@ -20,7 +20,6 @@ function initUserInfo(){
               return layer.msg('用户验证失败', {icon: 2});
           }
             //调用form。val快速为表单赋值
-            console.log(res);
             form.val('forminfo',res.data)
             layer.msg('用户验证成功', {icon: 1});
         }

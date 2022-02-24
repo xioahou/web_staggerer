@@ -3,6 +3,7 @@ $(function () {
 })
 //*获取用户的基本信息
 function getuserInfo() {
+    // console.log(2323)s
     $.ajax({
         type: "get",
         url: "/my/userinfo",
@@ -11,15 +12,17 @@ function getuserInfo() {
             // console.log(res);
             // resUserInfo(res)
             if (res.status !== 0) {
-                layer.alert(res.message, {
-                    icon: 1
+               return layer.alert(res.message, {
+                    icon: 2
                 })
+                // console.log(res);
             } 
             resUserInfo(res)
-            console.log(res);
         },
         // *不论成功还是失败都会调用baseApi中complete
-       
+        // complete:function(res){
+        //     console.log(res);
+        // },
        
     })
 }
@@ -31,7 +34,7 @@ $('#quit').on('click', function () {
     }, function (index) {
         //退出后要清除token
         localStorage.removeItem('token')
-        location.href = './login.html'
+        location.href = '../../login.html'
 
         layer.close(index);
     });
